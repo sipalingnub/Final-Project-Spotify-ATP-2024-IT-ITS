@@ -60,30 +60,20 @@ struct song* insertSongFromUser(struct song* head, char title[], char singer[]) 
 
 // insert Song to Playlist
 struct playlist* addSongtoPlaylist(struct playlist* head_p, char title[], char singer[]) {
-    if (head_p == NULL) {
-        printf("Sorry, playlist not found\n");
-        return NULL;
-    }
 
     struct playlist* newSong = createPlaylist("-", title, singer);
+    if (head_p == NULL) {
 
-    struct playlist* temp = head_p;
-    while (temp->name != NULL) {
-        struct playlist* temp = temp->next;
+        head_p = newSong;
+    } else {
 
-            while (temp->next->name != NULL) {
-                temp = temp->next;
-            }
-            strcpy(temp->next->name, newSong->name);
-            strcpy(temp->next->title, newSong->title);
-            strcpy(temp->next->singer, newSong->singer); 
-            return head_p; 
+        struct playlist* temp = head_p;
+        while (temp->next != NULL) {
+            temp = temp->next;
         }
-        temp = temp->next;
-    
-
-    printf("Playlist not found\n");
-    return head_p; 
+        temp->next = newSong; 
+    }
+    return head_p;
 }
 
 void search(struct song* head, char key[]) {
@@ -217,7 +207,9 @@ int main()
     struct song* head = createSong("Hymne ITS", "Sri Amiranti");
     head -> next = createSong("Sialan", "Juicy Luicy & Adrian Khalif");
     head -> next -> next = createSong("Aku yang jatuh Cinta", "Dudy Oris");
+    head -> next -> next -> next = createSong("Ini Aku", "Devano Denandra");
     struct playlist* head_p = createPlaylist("Ini Playlist", "-", "-");
+    head_p ->next = createPlaylist("-", "Ini Aku", "Devano Denandra");
 
     menu(head_p, head);
 
