@@ -159,6 +159,41 @@ void printPlaylist(struct playlist *head, struct song *head2)
 }
     
 // }
+void bubbleSortSongs(struct song* head) {
+    if (head == NULL || head->next == NULL) {
+        return;
+    }
+
+    struct song* current;
+    struct song* last = NULL;
+    int swapped;
+
+    do {
+        swapped = 0;
+        current = head;
+
+        while (current->next != last) {
+            if (strcmp(current->title, current->next->title) > 0) {
+                char tempTitle[100];
+                char tempSinger[100];
+
+                strcpy(tempTitle, current->title);
+                strcpy(tempSinger, current->singer);
+
+                strcpy(current->title, current->next->title);
+                strcpy(current->singer, current->next->singer);
+
+                strcpy(current->next->title, tempTitle);
+                strcpy(current->next->singer, tempSinger);
+
+                swapped = 1;
+            }
+            current = current->next;
+        }
+        last = current;
+    } while (swapped);
+}
+
 
 int main()
 {
