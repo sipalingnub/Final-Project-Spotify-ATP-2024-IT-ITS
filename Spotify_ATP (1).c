@@ -472,7 +472,7 @@ void kredit(struct playlist* head_p, struct song* head)
     printf("1. Balqis Sani Sabillah (5027241002)\n");
     printf("2. Muhammad Khairul Yahya (5027241092)\n");
     printf("3. Jofanka Al-kautsar Pangestu Abady (5027241107)\n");
-    printf("4. Putri Joselina Silitonga (5027241116)\n\n");
+    printf("\n\n");
 
     printf("Tekan 0 (enter) untuk kembali ke menu : ");
     int n; scanf("%d", &n);
