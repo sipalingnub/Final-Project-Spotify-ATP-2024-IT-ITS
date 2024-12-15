@@ -10,7 +10,7 @@ struct song{
 };
 
 
-
+//saya suka bokong besar
 struct playlist {
     char name[100];
     char title[100];
